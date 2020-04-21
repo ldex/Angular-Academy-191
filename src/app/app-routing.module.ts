@@ -1,8 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './shared/home.component';
+import { ContactComponent } from './shared/contact.component';
+import { AdminComponent } from './shared/admin.component';
+import { ErrorComponent } from './shared/error.component';
 
+const routes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'admin', component: AdminComponent },
+  
+  { path: 'products', loadChildren: () =>
+          import('./products/products.module')
+          .then(m => m.ProductsModule) },
 
-const routes: Routes = [];
+  { path: '**', component: ErrorComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
